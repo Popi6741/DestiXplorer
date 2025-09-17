@@ -1,0 +1,152 @@
+/* src/app/components/register/register.component.css */
+.container {
+  background: linear-gradient(135deg, #fd746c 0%, #ff9068 100%);
+  padding: 40px;
+  border-radius: 15px;
+  color: white;
+  max-width: 500px;
+  margin: 50px auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+  font-size: 2.2em;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #ecf0f1;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.input {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  box-sizing: border-box;
+  font-size: 1em;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.input::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+.input:focus {
+  outline: none;
+  border-color: #3498db;
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
+}
+
+.input.error {
+  border-color: #e74c3c;
+  background: rgba(231, 76, 60, 0.1);
+}
+
+.validation-error {
+  color: #e74c3c;
+  font-size: 0.9em;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(45deg, #3498db, #2980b9);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: linear-gradient(45deg, #2980b9, #1f618d);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.submit-btn:disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.message {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  animation: fadeIn 0.5s ease;
+}
+
+.success {
+  background: rgba(46, 204, 113, 0.2);
+  color: #27ae60;
+  border: 2px solid #27ae60;
+}
+
+.error {
+  background: rgba(231, 76, 60, 0.2);
+  color: #c0392b;
+  border: 2px solid #c0392b;
+}
+
+.links {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.links a {
+  color: #f1c40f;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.links a:hover {
+  color: #f39c12;
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+  .container {
+    margin: 20px;
+    padding: 25px;
+  }
+  
+  h1 {
+    font-size: 1.8em;
+  }
+  
+  .input {
+    padding: 12px;
+  }
+}

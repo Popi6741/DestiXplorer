@@ -1,0 +1,92 @@
+/* Fondo elegante con gradiente oscuro */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  background: linear-gradient(135deg, #1e2a38 0%, #2c3e50 100%);
+  min-height: 100vh;
+  color: #ecf0f1;
+}
+
+/* Contenedores con fondo claro para buen contraste */
+.container, .form-container, .card, .profile-container, 
+.countries-container, .trips-container, .trip-form-container,
+.dashboard-container, .login-container, .register-container {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 25px;
+  margin: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  color: #2c3e50 !important;
+}
+
+/* Textos oscuros para contraste */
+h1, h2, h3, h4, h5, h6, p, span, label {
+  color: #2c3e50 !important;
+}
+
+/* Selects y dropdowns con fondo claro */
+select, option {
+  background: white !important;
+  color: #2c3e50 !important;
+  border: 1px solid #bdc3c7 !important;
+}
+
+/* Listas y opciones */
+mat-select-panel, .mat-option, .cdk-overlay-pane {
+  background: white !important;
+  color: #2c3e50 !important;
+}
+
+/* Tarjetas individuales */
+.country-card, .trip-card, .favorite-card, .stat-card {
+  background: white !important;
+  color: #2c3e50 !important;
+  border: 1px solid #ecf0f1 !important;
+}
+
+/* Inputs con fondo claro */
+input, textarea {
+  background: white !important;
+  color: #2c3e50 !important;
+  border: 1px solid #bdc3c7 !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #7f8c8d !important;
+}
+
+/* Tablas de info color*/
+table, th, td {
+  background: white !important;
+  color: #2c3e50 !important;
+  border-color: #bdc3c7 !important;
+}
+
+
+.mat-dialog-container, .cdk-overlay-container {
+  background: white !important;
+  color: #2c3e50 !important;
+}
+/* Asegurar que todos los componentes tengan fondo claro */
+app-login, app-register, app-dashboard, app-countries, 
+app-trips, app-trip-form, app-profile {
+  display: block;
+  background: white;
+  border-radius: 15px;
+  margin: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Contenedor principal para mantener consistencia */
+.main-content-container {
+  background: white;
+  border-radius: 15px;
+  margin: 20px;
+  padding: 25px;
+  min-height: calc(100vh - 100px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}

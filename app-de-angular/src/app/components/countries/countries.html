@@ -1,0 +1,78 @@
+<div class="countries-container">
+  <div class="header">
+    <h1>Explorar Países del Mundo</h1>
+    <p>Descubre y guarda tus países favoritos</p>
+  </div>
+
+  <!-- Controles de búsqueda y filtro -->
+  <div class="controls">
+    <div class="search-box">
+      <input 
+        type="text" 
+        placeholder="Buscar país por nombre..." 
+        [(ngModel)]="searchTerm"
+        (input)="searchCountries()"
+        class="search-input"
+      >
+      <span class="search-icon">🔍</span>
+    </div>
+
+    <div class="filters">
+      <select [(ngModel)]="selectedRegion" (change)="filterByRegion()" class="region-select">
+        <option value="">Todas las regiones</option>
+        <option *ngFor="let region of regions" [value]="region">{{ region }}</option>
+      </select>
+
+      <button (click)="clearFilters()" class="clear-btn">
+        🗑️ Limpiar
+      </button>
+    </div>
+  </div>
+
+  <!-- Estados de carga y error -->
+  <div *ngIf="loading" class="loading">
+    <p>Cargando países...</p>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <!-- Grid de países -->
+  <div *ngIf="!loading && !error">
+    <div class="results-info">
+      <p>Mostrando {{ filteredCountries.length }} de {{ countries.length }} países</p>
+    </div>
+
+    <div *ngIf="filteredCountries.length === 0" class="no-results">
+      <h2>No se encontraron países</h2>
+      <p>Intenta con otros términos de búsqueda</p>
+    </div>
+
+    <div class="countries-grid">
+      <div *ngFor="let country of filteredCountries" class="country-card">
+        <div class="country-flag">
+          <img [src]="country.flags.png" [alt]="country.flags.alt || 'Bandera de ' + country.name.common" class="flag">
+        </div>
+
+        <div class="country-info">
+          <h3 class="country-name">{{ country.name.common }}</h3>
+          <p class="country-official">{{ country.name.official }}</p>
+
+          <div class="country-details">
+            <p><strong>🏙️ Capital:</strong> {{ getCapital(country.capital) }}</p>
+            <p><strong>🌍 Región:</strong> {{ country.region }}</p>
+            <p *ngIf="country.subregion"><strong>📍 Subregión:</strong> {{ country.subregion }}</p>
+            <p><strong>👥 Población:</strong> {{ formatPopulation(country.population) }}</p>
+          </div>
+
+          <div class="country-actions">
+            <button (click)="addToFavorites(country)" class="favorite-btn" [title]="'Añadir ' + country.name.common + ' a favoritos'">
+               Favorito
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

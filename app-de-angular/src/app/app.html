@@ -1,0 +1,195 @@
+!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="with=device-width, initial-scale=1.0" />
+    <title>Destixplorer - Login</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #1a1a1a;
+        }
+
+        .container {
+            background-color: #0094ff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #808080;
+            color: #fff;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #372222;
+            color: #644a4a;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+            button:hover {
+                background-color: #ffed4e;
+            }
+
+            button:disabled {
+                background-color: #666;
+                cursor: not-allowed;
+            }
+
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .success {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .error {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: #ffd700;
+        }
+
+        .links{
+            text-align: center;
+            margin-top: 20px;
+        }
+            .links a{
+                color: #ffd700;
+                text-decoration: none;
+            }
+                .links a:hover{
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Iniciar sesion</h1>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contrasenia:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <button type="submit" id="loginBtn">Iniciar Sesion</button>
+        </form>
+
+        <div class="loading" id="loading">
+            Iniciando Sesion...
+        </div>
+
+        <div id="message"></div>
+
+        <div class="links">
+            <a href="/">No tienes cuenta? Registrate</a>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5228/api';
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const loginBtn = document.getElementById('loginBtn');
+            const loading = document.getElementById('loading');
+            const messageDiv = document.getElementById('message');
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            loginBtn.disabled = true;
+            loading.style.display = 'block';
+            messageDiv.innerHTML = '';
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/Auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    messageDiv.innerHTML = `<div class="message success">
+                                            Login Exitoso, Redirigiendo...
+                                            </div>`;
+
+                    //Guardar el token (simulado) en localstorage
+                    localStorage.setItem('userToken', data.token || 'mock-token');
+                    localStorage.setItem('userData', JSON.stringify(data.user));
+
+                    //Redirigir al dashboard despues de 2 segundos
+                    setTimeout(() => {
+                        window.location.href = '/dashboard.html';
+                    }, 2000);
+
+                } else {
+                    messageDiv.innerHTML = `div class="message error"
+                                           ${data.message || 'Credenciales incorrectas'}
+                                           </div>`
+                }
+            } catch (error) {
+                messageDiv.innerHTML = `<div class="message error">
+                                            Error de conexion: ${error.message}
+                                            </div>`
+            } finally {
+                loginBtn.disabled = false;
+                loading.style.display = none;
+            }
+        });
+    </script>
+</body>
+</html>

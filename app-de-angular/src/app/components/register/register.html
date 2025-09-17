@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="card">
+    <h2>Destixplorer</h2>
+    
+    <form (ngSubmit)="onRegister()">
+      <div class="form-group">
+        <label>Nombre:</label>
+        <input type="text" [(ngModel)]="userData.name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" [(ngModel)]="userData.email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label>Contraseña:</label>
+        <input type="password" [(ngModel)]="userData.password" name="password" required>
+      </div>
+
+      <button type="submit" class="btn-primary">Registrarse</button>
+    </form>
+
+    <p>¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a></p>
+  </div>
+</div>

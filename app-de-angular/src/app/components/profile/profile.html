@@ -1,0 +1,120 @@
+<div class="profile-container" *ngIf="userData">
+  <!-- Header con imagen de fondo -->
+  <div class="profile-header">
+    <div class="header-content">
+      <div class="user-avatar">
+        <div class="avatar-circle">
+          {{ userData.Name?.charAt(0) || 'U' }}
+        </div>
+      </div>
+      <h1>{{ userData.Name || 'Usuario' }}</h1>
+      <p class="user-email">{{ userData.Email }}</p>
+      <div class="member-since">
+        <i class="icon">📅</i>
+        Miembro desde: {{ userData.CreatedAt | date:'dd/MM/yyyy' }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Estadísticas del usuario - SOLO viajes favoritos -->
+  <div class="stats-section">
+    <h2>Mis Estadísticas</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">🌎</div>
+        <div class="stat-info">
+          <h3>{{ favorites.length }}</h3>
+          <p>Viajes Favoritos</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">👤</div>
+        <div class="stat-info">
+          <h3>{{ userData.Id?.substring(0, 6) }}...</h3>
+          <p>ID de Usuario</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de favoritos -->
+  <div class="favorites-section">
+    <div class="section-header">
+      <h2>Mis Viajes Favoritos</h2>
+      <span class="badge">{{ favorites.length }}</span>
+    </div>
+
+    <div *ngIf="loading" class="loading">
+      <div class="spinner"></div>
+      <p>Cargando tus favoritos...</p>
+    </div>
+
+    <div *ngIf="error" class="error-message">
+      <i class="icon">⚠️</i>
+      {{ error }}
+    </div>
+
+    <div *ngIf="!loading && !error">
+      <div *ngIf="favorites.length === 0" class="empty-state">
+        <div class="empty-icon">🌟</div>
+        <h3>No tienes viajes favoritos aún</h3>
+        <p>¡Comienza a explorar países y añade tus destinos favoritos!</p>
+        <button class="explore-btn" routerLink="/countries">
+          Explorar Países
+        </button>
+      </div>
+
+      <div *ngIf="favorites.length > 0" class="favorites-list">
+        <div *ngFor="let favorite of favorites" class="favorite-item">
+          <div class="favorite-content">
+            <div class="favorite-icon">✈️</div>
+            <div class="favorite-info">
+              <h4>{{ favorite }}</h4>
+              <p>Destino favorito</p>
+            </div>
+            <button 
+              class="remove-btn"
+              (click)="removeFavorite(favorite)"
+              title="Eliminar de favoritos"
+            >
+              🗑️
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Acciones rápidas -->
+  <div class="actions-section">
+    <h2>Acciones Rápidas</h2>
+    <div class="actions-grid">
+      <button class="action-btn" routerLink="/countries">
+        <span class="action-icon">🌍</span>
+        Explorar Países
+      </button>
+      <button class="action-btn" routerLink="/trips">
+        <span class="action-icon">📅</span>
+        Mis Viajes
+      </button>
+      <button class="action-btn" routerLink="/dashboard">
+        <span class="action-icon">🏠</span>
+        Inicio
+      </button>
+      <button class="action-btn logout" (click)="logout()">
+        <span class="action-icon">🚪</span>
+        Cerrar Sesión
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!userData" class="not-authenticated">
+  <div class="not-auth-content">
+    <h2>No has iniciado sesión</h2>
+    <p>Inicia sesión para ver tu perfil</p>
+    <button class="login-btn" routerLink="/login">
+      Iniciar Sesión
+    </button>
+  </div>
+</div>

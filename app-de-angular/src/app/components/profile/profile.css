@@ -1,0 +1,38 @@
+.profile-container {
+  background: white !important;
+  color: #2c3e50 !important;
+}
+
+.favorites-section {
+  background: white !important;
+}
+
+.favorite-card {
+  background: #f8f9fa !important;
+  color: #2c3e50 !important;
+  border: 1px solid #e9ecef !important;
+}
+
+.favorite-item {
+  background: #f8f9fa !important;
+  color: #2c3e50 !important;
+  border: 1px solid #e9ecef !important;
+}
+
+.favorite-item span {
+  color: #2c3e50 !important;
+}
+
+.stats-section {
+  background: white !important;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%) !important;
+  color: white !important; 
+}
+
+.stat-card h3,
+.stat-card p {
+  color: white !important;
+}

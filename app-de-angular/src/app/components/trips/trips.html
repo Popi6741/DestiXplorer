@@ -1,0 +1,72 @@
+<div class="trips-container">
+  <div class="header">
+    <h1>Mis Viajes Planificados</h1>
+    <button class="btn-primary" (click)="createNewTrip()">
+       Planificar Nuevo Viaje
+    </button>
+  </div>
+
+  
+  <div *ngIf="!loading" class="debug-info">
+    <strong>Registro de viajes: </strong> 
+    {{ trips.length }} viajes cargados | 
+  
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Cargando viajes...</p>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    <i class="icon">⚠️</i>
+    {{ error }}
+  </div>
+
+  <div *ngIf="!loading && !error">
+    <div *ngIf="trips.length === 0" class="no-trips">
+      <div class="no-trips-content">
+        <div class="empty-icon">✈️</div>
+        <h2>No tienes viajes planificados aún</h2>
+        <p>¡Comienza a planificar tu próxima aventura!</p>
+        <button class="btn-primary" (click)="createNewTrip()">
+          Crear mi primer viaje
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="trips.length > 0" class="trips-grid">
+      <div *ngFor="let trip of trips" class="trip-card">
+        <div class="trip-header">
+          <h3>{{ trip.countryName || 'Destino no especificado' }}</h3>
+          <span class="rating" *ngIf="trip.rating > 0">
+            ⭐ {{ trip.rating }}/5
+          </span>
+        </div>
+
+        <div class="trip-dates">
+          <p><strong>Desde:</strong> {{ formatDate(trip.startDate) }}</p>
+          <p><strong>Hasta:</strong> {{ formatDate(trip.endDate) }}</p>
+          <p *ngIf="trip.countryCode"><strong>Código país:</strong> {{ trip.countryCode }}</p>
+        </div>
+
+        <div class="trip-description" *ngIf="trip.description">
+          <p>{{ trip.description }}</p>
+        </div>
+
+        <div class="trip-actions">
+          <button 
+            (click)="deleteTrip(trip.id || '')" 
+            class="btn-delete"
+            [disabled]="!trip.id"
+          >
+            🗑️ Eliminar
+          </button>
+        </div>
+
+        <div class="trip-footer">
+          <small>Creado: {{ formatDate(trip.createdAt) }}</small>
+          <small *ngIf="!trip.id" style="color: #e74c3c;">(ID no disponible)</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

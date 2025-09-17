@@ -1,0 +1,279 @@
+.trips-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 80vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.header h1 {
+  color: #2c3e50;
+  margin: 0;
+  font-size: 2.5em;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1em;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Debug info */
+.debug-info {
+  background: #e3f2fd;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin: 10px 0;
+  border-left: 4px solid #2196f3;
+  font-size: 0.9em;
+}
+
+.debug-btn {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8em;
+  margin-left: 10px;
+}
+
+.debug-btn:hover {
+  background: #388e3c;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #7f8c8d;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error */
+.error-message {
+  background: #ffe6e6;
+  color: #d63031;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+/* No trips */
+.no-trips {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.no-trips-content {
+  text-align: center;
+  color: #7f8c8d;
+}
+
+.empty-icon {
+  font-size: 4em;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.no-trips-content h2 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.no-trips-content p {
+  margin-bottom: 20px;
+  font-size: 1.1em;
+}
+
+/* Trips grid */
+.trips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+}
+
+.trip-card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  border-left: 4px solid #74b9ff;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.trip-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.trip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.trip-header h3 {
+  color: #2c3e50;
+  margin: 0;
+  font-size: 1.4em;
+}
+
+.rating {
+  background: #ffeaa7;
+  color: #d35400;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.trip-dates {
+  margin-bottom: 15px;
+}
+
+.trip-dates p {
+  margin: 5px 0;
+  color: #7f8c8d;
+}
+
+.trip-dates strong {
+  color: #2c3e50;
+}
+
+.trip-description {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 3px solid #74b9ff;
+}
+
+.trip-description p {
+  margin: 0;
+  color: #636e72;
+  line-height: 1.5;
+}
+
+.trip-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.btn-edit, .btn-delete {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.btn-edit {
+  background: #74b9ff;
+  color: white;
+}
+
+.btn-edit:hover:not(:disabled) {
+  background: #0984e3;
+  transform: translateY(-2px);
+}
+
+.btn-delete {
+  background: #ff7675;
+  color: white;
+}
+
+.btn-delete:hover:not(:disabled) {
+  background: #d63031;
+  transform: translateY(-2px);
+}
+
+.btn-edit:disabled, .btn-delete:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+.trip-footer {
+  border-top: 1px solid #ecf0f1;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.trip-footer small {
+  color: #bdc3c7;
+  font-size: 0.8em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .trips-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .trip-actions {
+    flex-direction: column;
+  }
+  
+  .debug-info {
+    font-size: 0.8em;
+  }
+  
+  .header h1 {
+    font-size: 2em;
+  }
+}
